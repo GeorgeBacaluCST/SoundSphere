@@ -14,6 +14,7 @@ builder.Services.AddDbContext<SoundSphereDbContext>(options => options.UseSqlSer
                   Environment.GetEnvironmentVariable("SQLSERVER_PASSWORD")),
     sqlOptions => sqlOptions.MigrationsAssembly("SoundSphere.Api")));
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(SoundSphere.Core.Mappings.AutoMapperProfile).Assembly);
 
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
