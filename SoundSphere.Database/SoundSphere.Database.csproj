@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SoundSphere.Infrastructure\SoundSphere.Infrastructure.csproj" />
   </ItemGroup>
 
