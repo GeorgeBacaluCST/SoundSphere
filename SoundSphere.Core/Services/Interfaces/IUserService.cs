@@ -1,17 +1,17 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface IUserService
     {
-        IList<User> GetAll();
+        IList<UserDto> GetAll();
 
-        User GetById(Guid id);
+        UserDto GetById(Guid id);
 
-        User Add(User user);
+        UserDto Add(UserDto userDto);
 
-        User UpdateById(User user, Guid id);
+        UserDto UpdateById(UserDto userDto, Guid id);
 
-        User DeleteById(Guid id);
+        UserDto DeleteById(Guid id);
     }
 }

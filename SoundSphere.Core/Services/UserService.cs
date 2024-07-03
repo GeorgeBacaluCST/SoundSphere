@@ -1,4 +1,6 @@
-﻿using SoundSphere.Core.Services.Interfaces;
+﻿using SoundSphere.Core.Mappings;
+using SoundSphere.Core.Services.Interfaces;
+using SoundSphere.Database.Dtos.Common;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 
@@ -7,24 +9,28 @@ namespace SoundSphere.Core.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IAuthorityRepository _authorityRepository;
 
-        public UserService(IUserRepository userRepository) => _userRepository = userRepository;
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository, IAuthorityRepository authorityRepository) =>
+            (_userRepository, _roleRepository, _authorityRepository) = (userRepository, roleRepository, authorityRepository);
 
-        public IList<User> GetAll() => _userRepository.GetAll();
+        public IList<UserDto> GetAll() => _userRepository.GetAll().ToDtos();
 
-        public User GetById(Guid id) => _userRepository.GetById(id);
+        public UserDto GetById(Guid id) => _userRepository.GetById(id).ToDto();
 
-        public User Add(User user)
+        public UserDto Add(UserDto userDto)
         {
-            _userRepository.LinkUserToRole(user);
-            _userRepository.LinkUserToAuthorities(user);
-            _userRepository.AddUserArtist(user);
-            _userRepository.AddUserSong(user);
-            return _userRepository.Add(user);
+            User userToAdd = userDto.ToEntity(_roleRepository, _authorityRepository);
+            _userRepository.LinkUserToRole(userToAdd);
+            _userRepository.LinkUserToAuthorities(userToAdd);
+            _userRepository.AddUserArtist(userToAdd);
+            _userRepository.AddUserSong(userToAdd);
+            return _userRepository.Add(userToAdd).ToDto();
         }
 
-        public User UpdateById(User user, Guid id) => _userRepository.UpdateById(user, id);
+        public UserDto UpdateById(UserDto userDto, Guid id) => _userRepository.UpdateById(userDto.ToEntity(_roleRepository, _authorityRepository), id).ToDto();
 
-        public User DeleteById(Guid id) => _userRepository.DeleteById(id);
+        public UserDto DeleteById(Guid id) => _userRepository.DeleteById(id).ToDto();
     }
 }

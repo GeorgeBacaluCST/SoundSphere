@@ -1,17 +1,17 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface IFeedbackService
     {
-        IList<Feedback> GetAll();
+        IList<FeedbackDto> GetAll();
 
-        Feedback GetById(Guid id);
+        FeedbackDto GetById(Guid id);
 
-        Feedback Add(Feedback feedback);
+        FeedbackDto Add(FeedbackDto feedbackDto);
 
-        Feedback UpdateById(Feedback feedback, Guid id);
+        FeedbackDto UpdateById(FeedbackDto feedbackDto, Guid id);
 
-        Feedback DeleteById(Guid id);
+        FeedbackDto DeleteById(Guid id);
     }
 }

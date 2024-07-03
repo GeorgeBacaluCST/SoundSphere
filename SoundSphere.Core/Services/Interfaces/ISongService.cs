@@ -1,17 +1,17 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface ISongService
     {
-        IList<Song> GetAll();
+        IList<SongDto> GetAll();
 
-        Song GetById(Guid id);
+        SongDto GetById(Guid id);
 
-        Song Add(Song song);
+        SongDto Add(SongDto songDto);
 
-        Song UpdateById(Song song, Guid id);
+        SongDto UpdateById(SongDto songDto, Guid id);
 
-        Song DeleteById(Guid id);
+        SongDto DeleteById(Guid id);
     }
 }

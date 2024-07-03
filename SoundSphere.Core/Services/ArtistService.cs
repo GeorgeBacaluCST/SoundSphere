@@ -1,4 +1,6 @@
-﻿using SoundSphere.Core.Services.Interfaces;
+﻿using SoundSphere.Core.Mappings;
+using SoundSphere.Core.Services.Interfaces;
+using SoundSphere.Database.Dtos.Common;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 
@@ -10,19 +12,20 @@ namespace SoundSphere.Core.Services
 
         public ArtistService(IArtistRepository artistRepository) => _artistRepository = artistRepository;
 
-        public IList<Artist> GetAll() => _artistRepository.GetAll();
+        public IList<ArtistDto> GetAll() => _artistRepository.GetAll().ToDtos();
 
-        public Artist GetById(Guid id) => _artistRepository.GetById(id);
+        public ArtistDto GetById(Guid id) => _artistRepository.GetById(id).ToDto();
 
-        public Artist Add(Artist artist)
+        public ArtistDto Add(ArtistDto artistDto)
         {
-            _artistRepository.AddArtistLink(artist);
-            _artistRepository.AddUserArtist(artist);
-            return _artistRepository.Add(artist);
+            Artist artistToAdd = artistDto.ToEntity();
+            _artistRepository.AddArtistLink(artistToAdd);
+            _artistRepository.AddUserArtist(artistToAdd);
+            return _artistRepository.Add(artistToAdd).ToDto();
         }
 
-        public Artist UpdateById(Artist artist, Guid id) => _artistRepository.UpdateById(artist, id);
+        public ArtistDto UpdateById(ArtistDto artistDto, Guid id) => _artistRepository.UpdateById(artistDto.ToEntity(), id).ToDto();
 
-        public Artist DeleteById(Guid id) => _artistRepository.DeleteById(id);
+        public ArtistDto DeleteById(Guid id) => _artistRepository.DeleteById(id).ToDto();
     }
 }

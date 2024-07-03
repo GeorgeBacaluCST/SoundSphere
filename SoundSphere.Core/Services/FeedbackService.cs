@@ -1,4 +1,6 @@
-﻿using SoundSphere.Core.Services.Interfaces;
+﻿using SoundSphere.Core.Mappings;
+using SoundSphere.Core.Services.Interfaces;
+using SoundSphere.Database.Dtos.Common;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 
@@ -7,21 +9,23 @@ namespace SoundSphere.Core.Services
     public class FeedbackService : IFeedbackService
     {
         private readonly IFeedbackRepository _feedbackRepository;
+        private readonly IUserRepository _userRepository;
 
-        public FeedbackService(IFeedbackRepository feedbackRepository) => _feedbackRepository = feedbackRepository;
+        public FeedbackService(IFeedbackRepository feedbackRepository, IUserRepository userRepository) => (_feedbackRepository, _userRepository) = (feedbackRepository, userRepository);
 
-        public IList<Feedback> GetAll() => _feedbackRepository.GetAll();
+        public IList<FeedbackDto> GetAll() => _feedbackRepository.GetAll().ToDtos();
 
-        public Feedback GetById(Guid id) => _feedbackRepository.GetById(id);
+        public FeedbackDto GetById(Guid id) => _feedbackRepository.GetById(id).ToDto();
 
-        public Feedback Add(Feedback feedback)
+        public FeedbackDto Add(FeedbackDto feedbackDto)
         {
-            _feedbackRepository.LinkFeedbackToUser(feedback);
-            return _feedbackRepository.Add(feedback);
+            Feedback feedbackToAdd = feedbackDto.ToEntity(_userRepository);
+            _feedbackRepository.LinkFeedbackToUser(feedbackToAdd);
+            return _feedbackRepository.Add(feedbackToAdd).ToDto();
         }
 
-        public Feedback UpdateById(Feedback feedback, Guid id) => _feedbackRepository.UpdateById(feedback, id);
+        public FeedbackDto UpdateById(FeedbackDto feedbackDto, Guid id) => _feedbackRepository.UpdateById(feedbackDto.ToEntity(_userRepository), id).ToDto();
 
-        public Feedback DeleteById(Guid id) => _feedbackRepository.DeleteById(id);
+        public FeedbackDto DeleteById(Guid id) => _feedbackRepository.DeleteById(id).ToDto();
     }
 }

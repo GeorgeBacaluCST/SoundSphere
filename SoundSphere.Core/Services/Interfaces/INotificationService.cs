@@ -1,17 +1,17 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface INotificationService
     {
-        IList<Notification> GetAll();
+        IList<NotificationDto> GetAll();
 
-        Notification GetById(Guid id);
+        NotificationDto GetById(Guid id);
 
-        Notification Add(Notification notification);
+        NotificationDto Add(NotificationDto notificationDto);
 
-        Notification UpdateById(Notification notification, Guid id);
+        NotificationDto UpdateById(NotificationDto notificationDto, Guid id);
 
-        Notification DeleteById(Guid id);
+        NotificationDto DeleteById(Guid id);
     }
 }

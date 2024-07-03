@@ -1,4 +1,6 @@
-﻿using SoundSphere.Core.Services.Interfaces;
+﻿using SoundSphere.Core.Mappings;
+using SoundSphere.Core.Services.Interfaces;
+using SoundSphere.Database.Dtos.Common;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 
@@ -7,21 +9,25 @@ namespace SoundSphere.Core.Services
     public class PlaylistService : IPlaylistService
     {
         private readonly IPlaylistRepository _playlistRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ISongRepository _songRepository;
 
-        public PlaylistService(IPlaylistRepository playlistRepository) => _playlistRepository = playlistRepository;
+        public PlaylistService(IPlaylistRepository playlistRepository, IUserRepository userRepository, ISongRepository songRepository) =>
+            (_playlistRepository, _userRepository, _songRepository) = (playlistRepository, userRepository, songRepository);
 
-        public IList<Playlist> GetAll() => _playlistRepository.GetAll();
+        public IList<PlaylistDto> GetAll() => _playlistRepository.GetAll().ToDtos();
 
-        public Playlist GetById(Guid id) => _playlistRepository.GetById(id);
+        public PlaylistDto GetById(Guid id) => _playlistRepository.GetById(id).ToDto();
 
-        public Playlist Add(Playlist playlist)
+        public PlaylistDto Add(PlaylistDto playlistDto)
         {
-            _playlistRepository.LinkPlaylistToUser(playlist);
-            return _playlistRepository.Add(playlist);
+            Playlist playlistToAdd = playlistDto.ToEntity(_userRepository, _songRepository);
+            _playlistRepository.LinkPlaylistToUser(playlistToAdd);
+            return _playlistRepository.Add(playlistToAdd).ToDto();
         }
 
-        public Playlist UpdateById(Playlist playlist, Guid id) => _playlistRepository.UpdateById(playlist, id);
+        public PlaylistDto UpdateById(PlaylistDto playlistDto, Guid id) => _playlistRepository.UpdateById(playlistDto.ToEntity(_userRepository, _songRepository), id).ToDto();
 
-        public Playlist DeleteById(Guid id) => _playlistRepository.DeleteById(id);
+        public PlaylistDto DeleteById(Guid id) => _playlistRepository.DeleteById(id).ToDto();
     }
 }

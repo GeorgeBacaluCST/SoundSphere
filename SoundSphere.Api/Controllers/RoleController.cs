@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoundSphere.Core.Services.Interfaces;
-using SoundSphere.Database.Entities;
+using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Api.Controllers
 {
@@ -16,10 +16,10 @@ namespace SoundSphere.Api.Controllers
 
         [HttpGet("{id}")] public IActionResult GetById(Guid id) => Ok(_roleService.GetById(id));
 
-        [HttpPost] public IActionResult Add(Role role)
+        [HttpPost] public IActionResult Add(RoleDto roleDto)
         {
-            Role addedRole = _roleService.Add(role);
-            return CreatedAtAction(nameof(GetById), new { addedRole.Id }, addedRole);
+            RoleDto addedRoleDto = _roleService.Add(roleDto);
+            return CreatedAtAction(nameof(GetById), new { addedRoleDto.Id }, addedRoleDto);
         }
     }
 }

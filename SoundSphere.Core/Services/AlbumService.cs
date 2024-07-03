@@ -1,4 +1,6 @@
-﻿using SoundSphere.Core.Services.Interfaces;
+﻿using SoundSphere.Core.Mappings;
+using SoundSphere.Core.Services.Interfaces;
+using SoundSphere.Database.Dtos.Common;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 
@@ -10,18 +12,19 @@ namespace SoundSphere.Core.Services
 
         public AlbumService(IAlbumRepository albumRepository) => _albumRepository = albumRepository;
 
-        public IList<Album> GetAll() => _albumRepository.GetAll();
+        public IList<AlbumDto> GetAll() => _albumRepository.GetAll().ToDtos();
 
-        public Album GetById(Guid id) => _albumRepository.GetById(id);
+        public AlbumDto GetById(Guid id) => _albumRepository.GetById(id).ToDto();
 
-        public Album Add(Album album)
+        public AlbumDto Add(AlbumDto albumDto)
         {
-            _albumRepository.AddAlbumLink(album);
-            return _albumRepository.Add(album);
+            Album albumToAdd = albumDto.ToEntity();
+            _albumRepository.AddAlbumLink(albumToAdd);
+            return _albumRepository.Add(albumToAdd).ToDto();
         }
 
-        public Album UpdateById(Album album, Guid id) => _albumRepository.UpdateById(album, id);
+        public AlbumDto UpdateById(AlbumDto albumDto, Guid id) => _albumRepository.UpdateById(albumDto.ToEntity(), id).ToDto();
 
-        public Album DeleteById(Guid id) => _albumRepository.DeleteById(id);
+        public AlbumDto DeleteById(Guid id) => _albumRepository.DeleteById(id).ToDto();
     }
 }

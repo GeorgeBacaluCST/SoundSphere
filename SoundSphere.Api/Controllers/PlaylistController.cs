@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoundSphere.Core.Services.Interfaces;
-using SoundSphere.Database.Entities;
+using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Api.Controllers
 {
@@ -16,13 +16,13 @@ namespace SoundSphere.Api.Controllers
 
         [HttpGet("{id}")] public IActionResult GetById(Guid id) => Ok(_playlistService.GetById(id));
 
-        [HttpPost] public IActionResult Add(Playlist playlist)
+        [HttpPost] public IActionResult Add(PlaylistDto playlistDto)
         {
-            Playlist addedPlaylist = _playlistService.Add(playlist);
-            return CreatedAtAction(nameof(GetById), new { addedPlaylist.Id }, addedPlaylist);
+            PlaylistDto addedPlaylistDto = _playlistService.Add(playlistDto);
+            return CreatedAtAction(nameof(GetById), new { addedPlaylistDto.Id }, addedPlaylistDto);
         }
 
-        [HttpPut("{id}")] public IActionResult UpdateById(Playlist playlist, Guid id) => Ok(_playlistService.UpdateById(playlist, id));
+        [HttpPut("{id}")] public IActionResult UpdateById(PlaylistDto playlistDto, Guid id) => Ok(_playlistService.UpdateById(playlistDto, id));
 
         [HttpDelete("{id}")] public IActionResult DeleteById(Guid id) => Ok(_playlistService.DeleteById(id));
     }

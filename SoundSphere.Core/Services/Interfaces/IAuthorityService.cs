@@ -1,13 +1,13 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface IAuthorityService
     {
-        IList<Authority> GetAll();
+        IList<AuthorityDto> GetAll();
 
-        Authority GetById(Guid id);
+        AuthorityDto GetById(Guid id);
 
-        Authority Add(Authority authority);
+        AuthorityDto Add(AuthorityDto authorityDto);
     }
 }

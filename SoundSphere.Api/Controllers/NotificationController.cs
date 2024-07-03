@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoundSphere.Core.Services.Interfaces;
-using SoundSphere.Database.Entities;
+using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Api.Controllers
 {
@@ -16,13 +16,13 @@ namespace SoundSphere.Api.Controllers
 
         [HttpGet("{id}")] public IActionResult GetById(Guid id) => Ok(_notificationService.GetById(id));
 
-        [HttpPost] public IActionResult Add(Notification notification)
+        [HttpPost] public IActionResult Add(NotificationDto notificationDto)
         {
-            Notification addedNotification = _notificationService.Add(notification);
-            return CreatedAtAction(nameof(GetById), new { addedNotification.Id }, addedNotification);
+            NotificationDto addedNotificationDto = _notificationService.Add(notificationDto);
+            return CreatedAtAction(nameof(GetById), new { addedNotificationDto.Id }, addedNotificationDto);
         }
 
-        [HttpPut("{id}")] public IActionResult UpdateById(Notification notification, Guid id) => Ok(_notificationService.UpdateById(notification, id));
+        [HttpPut("{id}")] public IActionResult UpdateById(NotificationDto notificationDto, Guid id) => Ok(_notificationService.UpdateById(notificationDto, id));
 
         [HttpDelete("{id}")] public IActionResult DeleteById(Guid id) => Ok(_notificationService.DeleteById(id));
     }

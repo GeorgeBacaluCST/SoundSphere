@@ -1,13 +1,13 @@
-﻿using SoundSphere.Database.Entities;
+﻿using SoundSphere.Database.Dtos.Common;
 
 namespace SoundSphere.Core.Services.Interfaces
 {
     public interface IRoleService
     {
-        IList<Role> GetAll();
+        IList<RoleDto> GetAll();
 
-        Role GetById(Guid id);
+        RoleDto GetById(Guid id);
 
-        Role Add(Role role);
+        RoleDto Add(RoleDto roleDto);
     }
 }
