@@ -6,6 +6,8 @@ using SoundSphere.Database.Repositories.Interfaces;
 using SoundSphere.Database.Repositories;
 using System.Text.Json.Serialization;
 using SoundSphere.Infrastructure.Middlewares;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoundSphereDbContext>(options => options.UseSqlServer(
@@ -18,28 +20,32 @@ builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializ
 builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(SoundSphere.Core.Mappings.AutoMapperProfile).Assembly);
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
-builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
-builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
-builder.Services.AddScoped<IAuthorityRepository, AuthorityRepository>();
-builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
-builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
-builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddScoped<ISongRepository, SongRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>()
+                .AddScoped<IArtistRepository, ArtistRepository>()
+                .AddScoped<IAuthorityRepository, AuthorityRepository>()
+                .AddScoped<IFeedbackRepository, FeedbackRepository>()
+                .AddScoped<INotificationRepository, NotificationRepository>()
+                .AddScoped<IPlaylistRepository, PlaylistRepository>()
+                .AddScoped<IRoleRepository, RoleRepository>()
+                .AddScoped<ISongRepository, SongRepository>()
+                .AddScoped<IUserRepository, UserRepository>();
 
-builder.Services.AddScoped<IAlbumService, AlbumService>();
-builder.Services.AddScoped<IArtistService, ArtistService>();
-builder.Services.AddScoped<IAuthorityService, AuthorityService>();
-builder.Services.AddScoped<IFeedbackService, FeedbackService>();
-builder.Services.AddScoped<INotificationService, NotificationService>();
-builder.Services.AddScoped<IPlaylistService, PlaylistService>();
-builder.Services.AddScoped<IRoleService, RoleService>();
-builder.Services.AddScoped<ISongService, SongService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAlbumService, AlbumService>()
+                .AddScoped<IArtistService, ArtistService>()
+                .AddScoped<IAuthorityService, AuthorityService>()
+                .AddScoped<IFeedbackService, FeedbackService>()
+                .AddScoped<INotificationService, NotificationService>()
+                .AddScoped<IPlaylistService, PlaylistService>()
+                .AddScoped<IRoleService, RoleService>()
+                .AddScoped<ISongService, SongService>()
+                .AddScoped<IUserService, UserService>();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "SoundSphere API", Description = "This is a sample REST API documentation for a music streaming service.", Version = "1.0" });
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+});
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
