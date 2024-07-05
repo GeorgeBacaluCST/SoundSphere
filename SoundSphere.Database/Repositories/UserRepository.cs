@@ -29,6 +29,7 @@ namespace SoundSphere.Database.Repositories
         {
             if (user.Id == Guid.Empty) user.Id = Guid.NewGuid();
             user.CreatedAt = DateTime.Now;
+            user.Password = "password";
             _context.Users.Add(user);
             _context.SaveChanges();
             return user;
@@ -44,6 +45,7 @@ namespace SoundSphere.Database.Repositories
             userToUpdate.Birthday = user.Birthday;
             userToUpdate.Avatar = user.Avatar;
             userToUpdate.Role = user.Role;
+            userToUpdate.Authorities = user.Authorities;
             if (_context.Entry(userToUpdate).State == EntityState.Unchanged)
                 userToUpdate.UpdatedAt = DateTime.Now;
             _context.SaveChanges();

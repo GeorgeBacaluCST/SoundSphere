@@ -14,7 +14,7 @@ namespace SoundSphere.Database.Entities
         
         public DateOnly ReleaseDate { get; set; }
         
-        public int DurationSeconds { get; set; } = 0;
+        public int DurationSeconds { get; set; }
         
         public Album Album { get; set; } = null!;
         
