@@ -2,6 +2,7 @@
 using SoundSphere.Database.Context;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
+using SoundSphere.Infrastructure.Exceptions;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -25,7 +26,7 @@ namespace SoundSphere.Database.Repositories
             .Include(song => song.SimilarSongs)
             .Where(song => song.DeletedAt == null)
             .SingleOrDefault(song => song.Id == id)
-            ?? throw new Exception($"Song with id {id} not found");
+            ?? throw new ResourceNotFoundException($"Song with id {id} not found");
 
         public Song Add(Song song)
         {

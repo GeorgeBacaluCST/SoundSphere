@@ -5,6 +5,7 @@ using SoundSphere.Database.Context;
 using SoundSphere.Database.Repositories.Interfaces;
 using SoundSphere.Database.Repositories;
 using System.Text.Json.Serialization;
+using SoundSphere.Infrastructure.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoundSphereDbContext>(options => options.UseSqlServer(
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<SoundSphereDbContext>(options => options.UseSqlSer
     sqlOptions => sqlOptions.MigrationsAssembly("SoundSphere.Api")));
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(SoundSphere.Core.Mappings.AutoMapperProfile).Assembly);
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
@@ -46,6 +48,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

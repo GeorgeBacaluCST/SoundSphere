@@ -2,6 +2,7 @@
 using SoundSphere.Database.Context;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
+using SoundSphere.Infrastructure.Exceptions;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -23,7 +24,7 @@ namespace SoundSphere.Database.Repositories
             .Include(playlist => playlist.Songs)
             .Where(playlist => playlist.DeletedAt == null)
             .SingleOrDefault(playlist => playlist.Id == id)
-            ?? throw new Exception($"Playlist with id {id} not found");
+            ?? throw new ResourceNotFoundException($"Playlist with id {id} not found");
 
         public Playlist Add(Playlist playlist)
         {

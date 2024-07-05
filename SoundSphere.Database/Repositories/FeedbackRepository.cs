@@ -2,6 +2,7 @@
 using SoundSphere.Database.Context;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
+using SoundSphere.Infrastructure.Exceptions;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -21,7 +22,7 @@ namespace SoundSphere.Database.Repositories
             .Include(feedback => feedback.User)
             .Where(feedback => feedback.DeletedAt == null)
             .SingleOrDefault(feedback => feedback.Id == id)
-            ?? throw new Exception($"Feedback with id {id} not found");
+            ?? throw new ResourceNotFoundException($"Feedback with id {id} not found");
 
         public Feedback Add(Feedback feedback)
         {
