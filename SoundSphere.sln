@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSphere.Api", "SoundSphere.Api\SoundSphere.Api.csproj", "{0D24CD5F-638D-40E1-9161-9E7838B0A86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSphere.Api", "SoundSphere.Api\SoundSphere.Api.csproj", "{0D24CD5F-638D-40E1-9161-9E7838B0A86F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSphere.Core", "SoundSphere.Core\SoundSphere.Core.csproj", "{47E61D7B-D2A3-45BC-A58B-70D4BD125350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSphere.Core", "SoundSphere.Core\SoundSphere.Core.csproj", "{47E61D7B-D2A3-45BC-A58B-70D4BD125350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSphere.Database", "SoundSphere.Database\SoundSphere.Database.csproj", "{01A8A9DF-0208-4714-A3BE-4EFAE052206A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSphere.Database", "SoundSphere.Database\SoundSphere.Database.csproj", "{01A8A9DF-0208-4714-A3BE-4EFAE052206A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSphere.Infrastructure", "SoundSphere.Infrastructure\SoundSphere.Infrastructure.csproj", "{358F9F52-A21C-415D-AB20-9C95E4A5724D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundSphere.Infrastructure", "SoundSphere.Infrastructure\SoundSphere.Infrastructure.csproj", "{358F9F52-A21C-415D-AB20-9C95E4A5724D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundSphere.Test", "SoundSphere.Test\SoundSphere.Test.csproj", "{CDC37B85-B3A4-4A1E-AF6E-E071A4402739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{358F9F52-A21C-415D-AB20-9C95E4A5724D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358F9F52-A21C-415D-AB20-9C95E4A5724D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358F9F52-A21C-415D-AB20-9C95E4A5724D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC37B85-B3A4-4A1E-AF6E-E071A4402739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC37B85-B3A4-4A1E-AF6E-E071A4402739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC37B85-B3A4-4A1E-AF6E-E071A4402739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC37B85-B3A4-4A1E-AF6E-E071A4402739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

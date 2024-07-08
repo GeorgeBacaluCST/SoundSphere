@@ -22,7 +22,7 @@ namespace SoundSphere.Database.Entities
         
         public Role Role { get; set; } = null!;
         
-        public IList<Authority> Authorities { get; set; } = null!;
+        public IList<Authority> Authorities { get; set; } = new List<Authority>();
         
         [JsonIgnore] public IList<UserSong>? UserSongs { get; set; }
         

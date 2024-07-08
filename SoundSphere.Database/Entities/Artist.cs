@@ -14,6 +14,6 @@ namespace SoundSphere.Database.Entities
         
         [JsonIgnore] public IList<Song>? Songs { get; set; }
         
-        public IList<ArtistLink> SimilarArtists { get; set; } = null!;
+        public IList<ArtistLink> SimilarArtists { get; set; } = new List<ArtistLink>();
     }
 }

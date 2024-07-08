@@ -18,11 +18,11 @@ namespace SoundSphere.Database.Entities
         
         public Album Album { get; set; } = null!;
         
-        public IList<Artist> Artists { get; set; } = null!;
+        public IList<Artist> Artists { get; set; } = new List<Artist>();
         
         [JsonIgnore] public IList<Playlist>? Playlists { get; set; }
-        
-        public IList<SongLink> SimilarSongs { get; set; } = null!;
+
+        public IList<SongLink> SimilarSongs { get; set; } = new List<SongLink>();
     }
 
     public enum Genre { InvalidGenre, Pop, Rock, Rnb, HipHop, Dance, Techno, Latino, Hindi, Reggae, Jazz, Classical, Country, Electronic }
