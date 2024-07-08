@@ -2,6 +2,7 @@
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 using SoundSphere.Infrastructure.Exceptions;
+using static SoundSphere.Database.Constants;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -17,7 +18,7 @@ namespace SoundSphere.Database.Repositories
 
         public Role GetById(Guid id) => _context.Roles
             .SingleOrDefault(role => role.Id == id)
-            ?? throw new ResourceNotFoundException($"Role with id {id} not found");
+            ?? throw new ResourceNotFoundException(string.Format(RoleNotFound, id));
 
         public Role Add(Role role)
         {

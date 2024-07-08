@@ -3,6 +3,7 @@ using SoundSphere.Database.Context;
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 using SoundSphere.Infrastructure.Exceptions;
+using static SoundSphere.Database.Constants;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -24,7 +25,7 @@ namespace SoundSphere.Database.Repositories
             .Include(user => user.Authorities)
             .Where(user => user.DeletedAt == null)
             .SingleOrDefault(user => user.Id == id)
-            ?? throw new ResourceNotFoundException($"User with id {id} not found");
+            ?? throw new ResourceNotFoundException(string.Format(UserNotFound, id));
 
         public User Add(User user)
         {

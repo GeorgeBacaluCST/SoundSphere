@@ -2,6 +2,7 @@
 using SoundSphere.Database.Entities;
 using SoundSphere.Database.Repositories.Interfaces;
 using SoundSphere.Infrastructure.Exceptions;
+using static SoundSphere.Database.Constants;
 
 namespace SoundSphere.Database.Repositories
 {
@@ -17,7 +18,7 @@ namespace SoundSphere.Database.Repositories
 
         public Authority GetById(Guid id) => _context.Authorities
             .SingleOrDefault(authority => authority.Id == id)
-            ?? throw new ResourceNotFoundException($"Authority with id {id} not found");
+            ?? throw new ResourceNotFoundException(string.Format(AuthorityNotFound, id));
 
         public Authority Add(Authority authority)
         {
