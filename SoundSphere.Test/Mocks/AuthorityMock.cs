@@ -7,17 +7,17 @@ namespace SoundSphere.Test.Mocks
     {
         private AuthorityMock() { }
 
-        public static IList<Authority> GetAuthoritiesAdmin() => [GetAuthority1(), GetAuthority2(), GetAuthority3(), GetAuthority4()];
+        public static List<Authority> GetAuthoritiesAdmin() => [GetAuthority1(), GetAuthority2(), GetAuthority3(), GetAuthority4()];
 
-        public static IList<Authority> GetAuthoritiesModerator() => [GetAuthority1(), GetAuthority2(), GetAuthority3()];
+        public static List<Authority> GetAuthoritiesModerator() => [GetAuthority1(), GetAuthority2(), GetAuthority3()];
 
-        public static IList<Authority> GetAuthoritiesListener() => [GetAuthority1()];
+        public static List<Authority> GetAuthoritiesListener() => [GetAuthority1()];
 
-        public static IList<AuthorityDto> GetAuthorityDtosAdmin() => GetAuthoritiesAdmin().Select(ToDto).ToList();
+        public static List<AuthorityDto> GetAuthorityDtosAdmin() => GetAuthoritiesAdmin().Select(ToDto).ToList();
 
-        public static IList<AuthorityDto> GetAuthorityDtosModerator() => GetAuthoritiesModerator().Select(ToDto).ToList();
+        public static List<AuthorityDto> GetAuthorityDtosModerator() => GetAuthoritiesModerator().Select(ToDto).ToList();
 
-        public static IList<AuthorityDto> GetAuthorityDtosListener() => GetAuthoritiesListener().Select(ToDto).ToList();
+        public static List<AuthorityDto> GetAuthorityDtosListener() => GetAuthoritiesListener().Select(ToDto).ToList();
 
         public static Authority GetAuthority1() => new() { Id = Guid.Parse("75e924c3-34e7-46ef-b521-7331e36caadd"), Type = AuthorityType.Create, CreatedAt = new DateTime(2024, 7, 1, 0, 0, 0) };
 

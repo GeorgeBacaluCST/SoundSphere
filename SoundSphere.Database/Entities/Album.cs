@@ -10,6 +10,6 @@
         
         public DateOnly ReleaseDate { get; set; }
         
-        public IList<AlbumLink> SimilarAlbums { get; set; } = new List<AlbumLink>();
+        public List<AlbumLink> SimilarAlbums { get; set; } = new()!;
     }
 }

@@ -8,9 +8,9 @@ namespace SoundSphere.Test.Mocks
     {
         private NotificationMock() { }
 
-        public static IList<Notification> GetNotifications() => [GetNotification1(), GetNotification2()];
+        public static List<Notification> GetNotifications() => [GetNotification1(), GetNotification2()];
 
-        public static IList<NotificationDto> GetNotificationDtos() => GetNotifications().Select(ToDto).ToList();
+        public static List<NotificationDto> GetNotificationDtos() => GetNotifications().Select(ToDto).ToList();
 
         public static Notification GetNotification1() => new()
         {

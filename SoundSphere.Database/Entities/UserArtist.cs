@@ -10,6 +10,6 @@
         
         public Artist? Artist { get; set; }
         
-        public bool IsFollowing { get; set; } = false;
+        public bool IsFollowing { get; set; }
     }
 }

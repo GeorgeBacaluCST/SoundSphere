@@ -8,9 +8,9 @@ namespace SoundSphere.Test.Mocks
     {
         private FeedbackMock() { }
 
-        public static IList<Feedback> GetFeedbacks() => [GetFeedback1(), GetFeedback2()];
+        public static List<Feedback> GetFeedbacks() => [GetFeedback1(), GetFeedback2()];
 
-        public static IList<FeedbackDto> GetFeedbackDtos() => GetFeedbacks().Select(ToDto).ToList();
+        public static List<FeedbackDto> GetFeedbackDtos() => GetFeedbacks().Select(ToDto).ToList();
 
         public static Feedback GetFeedback1() => new()
         {

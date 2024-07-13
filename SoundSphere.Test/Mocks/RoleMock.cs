@@ -7,9 +7,9 @@ namespace SoundSphere.Test.Mocks
     {
         private RoleMock() { }
 
-        public static IList<Role> GetRoles() => [GetRole1(), GetRole2(), GetRole3()];
+        public static List<Role> GetRoles() => [GetRole1(), GetRole2(), GetRole3()];
 
-        public static IList<RoleDto> GetRoleDtos() => GetRoles().Select(ToDto).ToList();
+        public static List<RoleDto> GetRoleDtos() => GetRoles().Select(ToDto).ToList();
 
         public static Role GetRole1() => new() { Id = Guid.Parse("deaf35ba-fe71-4c21-8a3c-d8e5b32a06fe"), Type = RoleType.Admin, CreatedAt = new DateTime(2024, 7, 1, 0, 0, 0) };
 

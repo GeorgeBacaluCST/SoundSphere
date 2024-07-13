@@ -7,8 +7,8 @@ namespace SoundSphere.Database.Entities
         public Guid Id { get; set; }
         
         public AuthorityType Type { get; set; }
-        
-        [JsonIgnore] public IList<User>? Users { get; set; }
+
+        [JsonIgnore] public List<User>? Users { get; set; } = new()!;
         
         public DateTime CreatedAt { get; set; }
     }

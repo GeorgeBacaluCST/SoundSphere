@@ -7,9 +7,9 @@ namespace SoundSphere.Test.Mocks
     {
         private AlbumMock() { }
 
-        public static IList<Album> GetAlbums() => [GetAlbum1(), GetAlbum2()];
+        public static List<Album> GetAlbums() => [GetAlbum1(), GetAlbum2()];
 
-        public static IList<AlbumDto> GetAlbumDtos() => GetAlbums().Select(ToDto).ToList();
+        public static List<AlbumDto> GetAlbumDtos() => GetAlbums().Select(ToDto).ToList();
 
         public static Album GetAlbum1() => new()
         {

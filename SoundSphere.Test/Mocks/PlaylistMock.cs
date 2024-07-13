@@ -9,9 +9,9 @@ namespace SoundSphere.Test.Mocks
     {
         private PlaylistMock() { }
 
-        public static IList<Playlist> GetPlaylists() => [GetPlaylist1(), GetPlaylist2()];
+        public static List<Playlist> GetPlaylists() => [GetPlaylist1(), GetPlaylist2()];
 
-        public static IList<PlaylistDto> GetPlaylistDtos() => GetPlaylists().Select(ToDto).ToList();
+        public static List<PlaylistDto> GetPlaylistDtos() => GetPlaylists().Select(ToDto).ToList();
 
         public static Playlist GetPlaylist1() => new()
         {

@@ -9,9 +9,9 @@ namespace SoundSphere.Test.Mocks
     {
         private UserMock() { }
 
-        public static IList<User> GetUsers() => [GetUser1(), GetUser2()];
+        public static List<User> GetUsers() => [GetUser1(), GetUser2()];
 
-        public static IList<UserDto> GetUserDtos() => GetUsers().Select(ToDto).ToList();
+        public static List<UserDto> GetUserDtos() => GetUsers().Select(ToDto).ToList();
 
         public static User GetUser1() => new()
         {

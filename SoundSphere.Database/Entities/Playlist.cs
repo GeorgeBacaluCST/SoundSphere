@@ -8,6 +8,6 @@
         
         public User User { get; set; } = null!;
         
-        public IList<Song> Songs { get; set; } = new List<Song>();
+        public List<Song> Songs { get; set; } = new()!;
     }
 }

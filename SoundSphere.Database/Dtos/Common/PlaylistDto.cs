@@ -16,6 +16,6 @@ namespace SoundSphere.Database.Dtos.Common
         public Guid UserId { get; set; }
 
         [MaxLength(100, ErrorMessage = "There can't be more than 100 songs in a playlist")]
-        public IList<Guid> SongsIds { get; set; } = new List<Guid>();
+        public List<Guid> SongsIds { get; set; } = new()!;
     }
 }

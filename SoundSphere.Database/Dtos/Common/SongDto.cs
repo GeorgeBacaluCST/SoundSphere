@@ -31,9 +31,9 @@ namespace SoundSphere.Database.Dtos.Common
         public Guid AlbumId { get; set; }
 
         [MaxLength(15, ErrorMessage = "There can't be more than 15 artists")]
-        public IList<Guid> ArtistsIds { get; set; } = new List<Guid>();
+        public List<Guid> ArtistsIds { get; set; } = new()!;
 
         [MaxLength(15, ErrorMessage = "There can't be more than 15 similar songs")]
-        public IList<Guid> SimilarSongsIds { get; set; } = new List<Guid>();
+        public List<Guid> SimilarSongsIds { get; set; } = new()!;
     }
 }

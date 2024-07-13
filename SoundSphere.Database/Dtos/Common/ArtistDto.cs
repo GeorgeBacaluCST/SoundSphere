@@ -20,6 +20,6 @@ namespace SoundSphere.Database.Dtos.Common
         public string? Bio { get; set; }
 
         [MaxLength(15, ErrorMessage = "There can't be more than 15 similar artists")]
-        public IList<Guid> SimilarArtistsIds { get; set; } = new List<Guid>();
+        public List<Guid> SimilarArtistsIds { get; set; } = new()!;
     }
 }

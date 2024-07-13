@@ -37,6 +37,6 @@ namespace SoundSphere.Database.Dtos.Common
         public Guid RoleId { get; set; }
 
         [MaxLength(4, ErrorMessage = "There can't be more than 4 authorities")]
-        public IList<Guid> AuthoritiesIds { get; set; } = new List<Guid>();
+        public List<Guid> AuthoritiesIds { get; set; } = new()!;
     }
 }

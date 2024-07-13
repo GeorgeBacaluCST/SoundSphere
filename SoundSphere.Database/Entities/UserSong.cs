@@ -10,6 +10,6 @@
         
         public Song? Song { get; set; }
         
-        public int PlayCount { get; set; } = 0;
+        public int PlayCount { get; set; }
     }
 }

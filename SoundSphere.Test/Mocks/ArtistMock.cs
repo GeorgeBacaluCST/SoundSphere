@@ -7,9 +7,9 @@ namespace SoundSphere.Test.Mocks
     {
         private ArtistMock() { }
 
-        public static IList<Artist> GetArtists() => [GetArtist1(), GetArtist2()];
+        public static List<Artist> GetArtists() => [GetArtist1(), GetArtist2()];
 
-        public static IList<ArtistDto> GetArtistDtos() => GetArtists().Select(ToDto).ToList();
+        public static List<ArtistDto> GetArtistDtos() => GetArtists().Select(ToDto).ToList();
 
         public static Artist GetArtist1() => new()
         {

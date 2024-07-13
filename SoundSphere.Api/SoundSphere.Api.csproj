@@ -22,4 +22,8 @@
     <ProjectReference Include="..\SoundSphere.Infrastructure\SoundSphere.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+
 </Project>

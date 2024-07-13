@@ -9,17 +9,17 @@ namespace SoundSphere.Test.Mocks
     {
         private SongMock() { }
 
-        public static IList<Song> GetSongs() => GetSongs1().Concat(GetSongs2()).ToList();
+        public static List<Song> GetSongs() => GetSongs1().Concat(GetSongs2()).ToList();
 
-        public static IList<SongDto> GetSongDtos() => GetSongs().Select(ToDto).ToList();
+        public static List<SongDto> GetSongDtos() => GetSongs().Select(ToDto).ToList();
 
-        public static IList<Song> GetSongs1() => [GetSong1(), GetSong2()];
+        public static List<Song> GetSongs1() => [GetSong1(), GetSong2()];
 
-        public static IList<Song> GetSongs2() => [GetSong3(), GetSong4()];
+        public static List<Song> GetSongs2() => [GetSong3(), GetSong4()];
 
-        public static IList<SongDto> GetSongDtos1() => GetSongs1().Select(ToDto).ToList();
+        public static List<SongDto> GetSongDtos1() => GetSongs1().Select(ToDto).ToList();
 
-        public static IList<SongDto> GetSongDtos2() => GetSongs2().Select(ToDto).ToList();
+        public static List<SongDto> GetSongDtos2() => GetSongs2().Select(ToDto).ToList();
 
         public static Song GetSong1() => new()
         {

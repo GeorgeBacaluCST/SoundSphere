@@ -22,6 +22,6 @@ namespace SoundSphere.Database.Dtos.Common
         public DateOnly ReleaseDate { get; set; }
 
         [MaxLength(15, ErrorMessage = "There can't be more than 15 similar albums")]
-        public IList<Guid> SimilarAlbumsIds { get; set; } = new List<Guid>();
+        public List<Guid> SimilarAlbumsIds { get; set; } = new()!;
     }
 }
