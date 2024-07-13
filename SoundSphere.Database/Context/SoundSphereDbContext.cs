@@ -6,22 +6,24 @@ namespace SoundSphere.Database.Context
 {
     public class SoundSphereDbContext : DbContext
     {
+        public SoundSphereDbContext() { }
+
         public SoundSphereDbContext(DbContextOptions<SoundSphereDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Authority> Authorities { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Artist> Artists { get; set; }
-        public DbSet<Song> Songs { get; set; }
-        public DbSet<Playlist> Playlists { get; set; }
-        public DbSet<AlbumLink> AlbumLinks { get; set; }
-        public DbSet<ArtistLink> ArtistLinks { get; set; }
-        public DbSet<SongLink> SongsLinks { get; set; }
-        public DbSet<UserArtist> UsersArtists { get; set; }
-        public DbSet<UserSong> UsersSongs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Authority> Authorities { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Artist> Artists { get; set; }
+        public virtual DbSet<Song> Songs { get; set; }
+        public virtual DbSet<Playlist> Playlists { get; set; }
+        public virtual DbSet<AlbumLink> AlbumLinks { get; set; }
+        public virtual DbSet<ArtistLink> ArtistLinks { get; set; }
+        public virtual DbSet<SongLink> SongLinks { get; set; }
+        public virtual DbSet<UserArtist> UsersArtists { get; set; }
+        public virtual DbSet<UserSong> UsersSongs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -11,7 +11,7 @@ namespace SoundSphere.Test.Mocks
 
         public static IList<User> GetUsers() => [GetUser1(), GetUser2()];
 
-        public static IList<UserDto> GetUserDto() => GetUsers().Select(ToDto).ToList();
+        public static IList<UserDto> GetUserDtos() => GetUsers().Select(ToDto).ToList();
 
         public static User GetUser1() => new()
         {
